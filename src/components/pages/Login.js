@@ -135,8 +135,27 @@ class Login extends Component {
     render() {
         const { username, password } = this.state;
         return (
-            <div className="row" >
-                <br /> <br />
+            <div className="container-fluid" >
+                <div className="row">
+                    <div className="col-sm-2">
+                        <button type="button" className="navbar-toggle collapsed"
+                            data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+                            aria-expanded="false" ><span className="sr-only">Event</span>
+                            <span className="icon-bar"></span>
+                            <span className="icon-bar"></span>
+                            <span className="icon-bar"></span>
+                        </button>
+                        <Link className="navbar-brand glyphicon glyphicon-th-list" to="#" style={{ color: 'pink' }}> Event</Link>
+                    </div>
+                    <div className="col-sm-8">
+                        <div>
+                            <ul className="nav navbar-nav">
+                                <li className="active"><Link to="/" className="glyphicon glyphicon-home" style={{ color: 'pink' }}> Home</Link><span className="sr-only">(current)</span></li>
+                                <li ><Link to="/notification" className="glyphicon glyphicon-bell" style={{ color: 'pink' }}> Upcoming Events </Link></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
                 <div className="col-sm-offset-3 col-sm-6">
                     <div className="well">
                         <h3 className="text-center">Welcome User</h3>

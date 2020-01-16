@@ -36,7 +36,10 @@ class AddEvent extends Component {
         event.preventDefault();
         console.log(this.state);
         alert("posted");
-        this.props.history.push('/');
+        this.props.history.push({
+            pathname: '/adminHome',
+            state: { title: this.props.location.state.title }
+        });
         window.location.reload();
         let newPost = [...this.state.post];
         let newpost = {
@@ -54,7 +57,6 @@ class AddEvent extends Component {
             drinksprice: this.state.drinksprice,
             startbook: this.state.startbook,
             endbook: this.state.endbook,
-
             description: this.state.description
         }
 
@@ -63,6 +65,7 @@ class AddEvent extends Component {
             this.setState({ post: newPost });
         })
     }
+
     componentDidMount() {
         let _id = this.props.match.params._id;
         axios.get(this.serviceUrl + _id).then((res) => {
@@ -71,9 +74,15 @@ class AddEvent extends Component {
             })
         })
     }
+
     cancelClick = () => {
-        this.props.history.push('/');
+
+        this.props.history.push({
+            pathname: '/adminHome',
+            state: { title: this.props.location.state.title }
+        });
     }
+
     render() {
         const { eventname, start, end, startt, endt, image, location, adultprice, childprice, vegprice, nonvegprice, drinksprice, startbook, endbook, description } = this.state;
         return (
