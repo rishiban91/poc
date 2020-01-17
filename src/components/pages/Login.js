@@ -155,6 +155,12 @@ class Login extends Component {
                             </ul>
                         </div>
                     </div>
+                    <div className="col-sm-2">
+                        <ul className="nav navbar-nav navbar-right">
+                            <li ><Link to="/login" className="glyphicon glyphicon-user" style={{ color: 'pink' }}> Login</Link></li>
+                            <li><Link to="/register" className="glyphicon glyphicon-cloud" style={{ color: 'pink' }}> Sign Up</Link></li>
+                        </ul>
+                    </div>
                 </div>
                 <div className="col-sm-offset-3 col-sm-6">
                     <div className="well">
