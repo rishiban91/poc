@@ -27,36 +27,14 @@ class AdminHome extends Component {
 
     showDetails = (_id) => {
 
-        this.props.history.push('/event/' + _id);
-    }
+        this.props.history.push({
+            pathname: '/adminevent/' + _id,
+            state: {
+                title: this.props.location.state.title,
+            }
+        });
 
-    showAdmin = () => {
-        return (
-            <div>
-                <ul className="nav navbar-nav">
-                    <li style={{ color: 'pink', margin: 15, fontSize: 20 }}> {this.props.location.state.title} </li>
-                    <li className="active"><Link to={{
-                        pathname: '/adminHome',
-                        state: { title: this.props.location.state.title }
-                    }}
-                        className="glyphicon glyphicon-home" style={{ color: 'pink' }}> Home</Link><span className="sr-only">(current)</span></li>
-                    <li ><Link to={{
-                        pathname: '/addEvent',
-                        state: { title: this.props.location.state.title }
-                    }}
-                        className="glyphicon glyphicon-plus-sign" style={{ color: 'pink' }}> Add Event </Link></li>
-                    <li ><Link to={{
-                        pathname: '/event',
-                        state: { title: this.props.location.state.title }
-                    }}
-                        className="glyphicon glyphicon-list-alt" style={{ color: 'pink' }}> List of Events </Link></li>
-                    <li ><Link to={{
-                        pathname: '/adminNotification',
-                        state: { title: this.props.location.state.title }
-                    }} className="glyphicon glyphicon-bell" style={{ color: 'pink' }}> Upcoming Events </Link></li>
-                </ul>
-            </div>
-        );
+        // this.props.history.push('/event/' + _id);
     }
 
     render() {
@@ -74,7 +52,30 @@ class AdminHome extends Component {
                         <Link className="navbar-brand glyphicon glyphicon-th-list" to="#" style={{ color: 'pink' }}> Event</Link>
                     </div>
                     <div className="col-sm-8">
-                        {this.showAdmin()}
+                        <div>
+                            <ul className="nav navbar-nav">
+                                <li style={{ color: 'pink', margin: 15, fontSize: 20 }}> {this.props.location.state.title} </li>
+                                <li className="active"><Link to={{
+                                    pathname: '/adminHome',
+                                    state: { title: this.props.location.state.title }
+                                }}
+                                    className="glyphicon glyphicon-home" style={{ color: 'pink' }}> Home</Link><span className="sr-only">(current)</span></li>
+                                <li ><Link to={{
+                                    pathname: '/addEvent',
+                                    state: { title: this.props.location.state.title }
+                                }}
+                                    className="glyphicon glyphicon-plus-sign" style={{ color: 'pink' }}> Add Event </Link></li>
+                                <li ><Link to={{
+                                    pathname: '/event',
+                                    state: { title: this.props.location.state.title }
+                                }}
+                                    className="glyphicon glyphicon-list-alt" style={{ color: 'pink' }}> List of Events </Link></li>
+                                <li ><Link to={{
+                                    pathname: '/adminNotification',
+                                    state: { title: this.props.location.state.title }
+                                }} className="glyphicon glyphicon-bell" style={{ color: 'pink' }}> Upcoming Events </Link></li>
+                            </ul>
+                        </div>
                     </div>
                     <div className="col-sm-2">
                         <ul className="nav navbar-nav navbar-right">

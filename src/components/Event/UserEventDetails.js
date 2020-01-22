@@ -3,7 +3,7 @@ import { EventRegistration } from './EventRegistration';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-class EventDetails extends Component {
+class UserEventDetails extends Component {
   constructor() {
     super();
     this.serviceUrl = "http://localhost:5000/api/event/";
@@ -23,7 +23,11 @@ class EventDetails extends Component {
   }
 
   apply = (_id) => {
-    this.props.history.push('/eventregistration/' + _id);
+    // alert(_id);
+    this.props.history.push({
+      pathname: '/userEventRegistration/' + _id,
+      state: {title: this.props.location.state.title,}
+    });
   }
 
   renderRoleEvent = () => {
@@ -42,25 +46,28 @@ class EventDetails extends Component {
         <div className="col-sm-8">
           <div>
             <ul className="nav navbar-nav">
-              <li style={{ color: 'pink', margin: 15, fontSize: 20 }}> </li>
+              <li style={{ color: 'pink', margin: 15, fontSize: 20 }}> {this.props.location.state.title} </li>
               <li className="active"><Link to={{
-                pathname: '/',
+                pathname: '/userHome',
+                state: { title: this.props.location.state.title }
               }}
                 className="glyphicon glyphicon-home" style={{ color: 'pink' }}> Home</Link><span className="sr-only">(current)</span></li>
               <li ><Link to={{
-                pathname: '/'
+                pathname: '/userNotification',
+                state: { title: this.props.location.state.title }
               }} className="glyphicon glyphicon-bell" style={{ color: 'pink' }}> Upcoming Events </Link></li>
             </ul>
           </div>
         </div>
         <div className="col-sm-2">
           <ul className="nav navbar-nav navbar-right">
-            <li ><Link to="/login" className="glyphicon glyphicon-user" style={{ color: 'pink' }}> Login</Link></li>
-            <li><Link to="/register" className="glyphicon glyphicon-cloud" style={{ color: 'pink' }}> Sign Up</Link></li>
+            <li ><Link to="/logout" className="glyphicon glyphicon-log-out" style={{ color: 'pink' }}> Logout</Link></li>
+            <li />
           </ul>
         </div>
       </div>
     );
+
   }
 
   render() {
@@ -98,4 +105,4 @@ class EventDetails extends Component {
     );
   }
 }
-export default EventDetails;
+export default UserEventDetails;

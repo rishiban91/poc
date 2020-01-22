@@ -100,8 +100,11 @@ class Login extends Component {
                         if (userName === data[index].email && passWord === data[index].password && data[index].role === "Admin") {
                             this.x = true;
                             this.props.history.push({
-                                pathname: '/adminComp',
-                                state: { title: data[index].username }
+                                pathname: '/adminHome',
+                                state: {
+                                    title: data[index].username,
+                                    role: data[index].role,
+                                }
                             });
                             return data;
                         }
@@ -109,7 +112,7 @@ class Login extends Component {
                         else if (userName === data[index].email && passWord === data[index].password) {
                             this.x = false;
                             this.props.history.push({
-                                pathname: '/userHeader',
+                                pathname: '/userHome',
                                 state: { title: data[index].username }
                             });
                             return data;
@@ -200,4 +203,3 @@ class Login extends Component {
 }
 
 export default Login;
-

@@ -3,7 +3,7 @@ import axios from 'axios';
 import eventdetails from '../Event/EventDetails'
 import Pagination from '../Event/Pagination';
 import { Link } from 'react-router-dom';
-
+import UserEventDetails from '../Event/UserEventDetails';
 class UserHome extends Component {
     constructor() {
         super();
@@ -26,27 +26,10 @@ class UserHome extends Component {
     }
 
     showDetails = (_id) => {
-
-        this.props.history.push('/event/' + _id);
-    }
-
-    showAdmin = () => {
-        return (
-            <div>
-                <ul className="nav navbar-nav">
-                    <li style={{ color: 'pink', margin: 15, fontSize: 20 }}> {this.props.location.state.title} </li>
-                    <li className="active"><Link to={{
-                        pathname: '/userHome',
-                        state: { title: this.props.location.state.title }
-                    }}
-                        className="glyphicon glyphicon-home" style={{ color: 'pink' }}> Home</Link><span className="sr-only">(current)</span></li>
-                    <li ><Link to={{
-                        pathname: '/userNotification',
-                        state: { title: this.props.location.state.title }
-                    }} className="glyphicon glyphicon-bell" style={{ color: 'pink' }}> Upcoming Events </Link></li>
-                </ul>
-            </div>
-        );
+        this.props.history.push({
+            pathname: '/userEvent/'+ _id,
+            state: { title: this.props.location.state.title }
+        });
     }
 
     render() {
@@ -64,7 +47,20 @@ class UserHome extends Component {
                         <Link className="navbar-brand glyphicon glyphicon-th-list" to="#" style={{ color: 'pink' }}> Event</Link>
                     </div>
                     <div className="col-sm-8">
-                        {this.showAdmin()}
+                        <div>
+                            <ul className="nav navbar-nav">
+                                <li style={{ color: 'pink', margin: 15, fontSize: 20 }}> {this.props.location.state.title} </li>
+                                <li className="active"><Link to={{
+                                    pathname: '/userHome',
+                                    state: { title: this.props.location.state.title }
+                                }}
+                                    className="glyphicon glyphicon-home" style={{ color: 'pink' }}> Home</Link><span className="sr-only">(current)</span></li>
+                                <li ><Link to={{
+                                    pathname: '/userNotification',
+                                    state: { title: this.props.location.state.title }
+                                }} className="glyphicon glyphicon-bell" style={{ color: 'pink' }}> Upcoming Events </Link></li>
+                            </ul>
+                        </div>
                     </div>
                     <div className="col-sm-2">
                         <ul className="nav navbar-nav navbar-right">

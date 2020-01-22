@@ -22,7 +22,10 @@ import LoginLabel from '../src/components/layout/LoginLabel';
 import AdminComp from '../src/components/layout/AdminComp';
 import UserHeader from '../src/components/layout/UserHeader';
 import AdminHome from '../src/components/layout/AdminHome';
-
+import AdminEventDetails from './components/Event/AdminEventDetails';
+import UserEventDetails from './components/Event/UserEventDetails';
+import AdminEventregistration from './components/Event/AdminReg';
+import UserEventregistration from './components/Event/UserReg';
 class App extends Component {
   constructor() {
     super();
@@ -67,6 +70,12 @@ class App extends Component {
               <Route exact path="/adminNotification" component={AdminNotification} />
               <Route exact path="/adminHome" component={AdminHome} />
               <Route exact path="/userHome" component={UserHome} />
+              <Route exact path="/adminevent/:_id" component={AdminEventDetails} />
+              <Route exact path="/userEvent/:_id" component={UserEventDetails} />
+              <Route exact path="/admineventregistration/:_id" component={AdminEventregistration} />
+              <Route exact path="/userEventRegistration/:_id" component={UserEventregistration} />
+
+
             </Switch>
         </Router>
       </div>

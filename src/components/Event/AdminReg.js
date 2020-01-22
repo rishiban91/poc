@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const history = createHistory();
 
-export class EventRegistration extends Component {
+export class AdminEventRegistration extends Component {
 
     constructor(props) {
         super(props);
@@ -88,7 +88,11 @@ export class EventRegistration extends Component {
     onSubmit = (event) => {
         event.preventDefault();
         alert("Congratulation! You have successfully Registered for the Event");
-        this.props.history.push('/');
+
+        this.props.history.push({
+            pathname: '/adminHome',
+            state: { title: this.props.location.state.title }
+        });
         let newPost = [...this.state.reg];
         let newpost = {
             _id: this.state._id,
@@ -114,6 +118,7 @@ export class EventRegistration extends Component {
         axios.get(this.serviceUrl + _id).then((res) => {
             this.setState({
                 _id: res.data._id,
+
                 fullname: res.data.fullname,
                 email: res.data.email,
                 mobileno: res.data.mobileno,
@@ -144,33 +149,45 @@ export class EventRegistration extends Component {
                 <div className="col-sm-8">
                     <div>
                         <ul className="nav navbar-nav">
-                            <li style={{ color: 'pink', margin: 15, fontSize: 20 }}> </li>
+                            <li style={{ color: 'pink', margin: 15, fontSize: 20 }}> {this.props.location.state.title} </li>
                             <li className="active"><Link to={{
-                                pathname: '/',
-
+                                pathname: '/adminHome',
+                                state: { title: this.props.location.state.title }
                             }}
                                 className="glyphicon glyphicon-home" style={{ color: 'pink' }}> Home</Link><span className="sr-only">(current)</span></li>
                             <li ><Link to={{
-                                pathname: '/notification',
+                                pathname: '/addEvent',
+                                state: { title: this.props.location.state.title }
+                            }}
+                                className="glyphicon glyphicon-plus-sign" style={{ color: 'pink' }}> Add Event </Link></li>
+                            <li ><Link to={{
+                                pathname: '/event',
+                                state: { title: this.props.location.state.title }
+                            }}
+                                className="glyphicon glyphicon-list-alt" style={{ color: 'pink' }}> List of Events </Link></li>
+                            <li ><Link to={{
+                                pathname: '/adminNotification',
+                                state: { title: this.props.location.state.title }
                             }} className="glyphicon glyphicon-bell" style={{ color: 'pink' }}> Upcoming Events </Link></li>
                         </ul>
                     </div>
                 </div>
                 <div className="col-sm-2">
                     <ul className="nav navbar-nav navbar-right">
-                        <li ><Link to="/login" className="glyphicon glyphicon-user" style={{ color: 'pink' }}> Login</Link></li>
-                        <li><Link to="/register" className="glyphicon glyphicon-cloud" style={{ color: 'pink' }}> Sign Up</Link></li>
+                        <li ><Link to="/logout" className="glyphicon glyphicon-log-out" style={{ color: 'pink' }}> Logout</Link></li>
+                        <li />
                     </ul>
                 </div>
             </div>
         );
-
     }
 
     cancelClick = () => {
-        this.props.history.push('/');
+        this.props.history.push({
+            pathname: '/adminHome',
+            state: { title: this.props.location.state.title }
+        });
     }
-
 
     render() {
         const { fullname, email, mobileno, headcountadult, headcountchild, headcountbaby, veg, nonveg, drinks } = this.state;
@@ -254,7 +271,6 @@ export class EventRegistration extends Component {
                             <button className="btn btn-success" type="submit">Submit</button>
                             &nbsp;&nbsp;&nbsp;
                     <button onClick={this.cancelClick} className="btn btn-danger">Cancel</button>
-
                         </form>
                     </div>
                 </div>
@@ -263,6 +279,6 @@ export class EventRegistration extends Component {
     }
 }
 
-export default EventRegistration;
+export default AdminEventRegistration;
 
 

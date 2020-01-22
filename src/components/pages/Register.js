@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import createHistory from 'history/createBrowserHistory';
 import { Link } from 'react-router-dom';
-const history = createHistory();
 
+const history = createHistory();
 
 class Register extends Component {
 
@@ -120,9 +120,8 @@ class Register extends Component {
         const { username, password, email, confirmpassword, gender, mobileno, role } = this.state;
 
         return (
-
-            <div className="row">
-            <div className="row">
+            <div className="container-fluid">
+                <div className="row">
                     <div className="col-sm-2">
                         <button type="button" className="navbar-toggle collapsed"
                             data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
@@ -154,74 +153,64 @@ class Register extends Component {
                         <hr />
                         <form onSubmit={this.onSubmit}>
                             <div className="form-group">
-                                <label> Choose a role :</label>&nbsp; &nbsp;
-            <input name="role" onChange={this.onChanged}
-                                    value={role} type="radio" value="Admin" /> <span className="glyphicon glyphicon-king"><b> Admin</b></span> &nbsp; &nbsp;
-            <input name="role" onChange={this.onChanged}
-                                    value={role} type="radio" value="Manager" /> <span className="glyphicon glyphicon-king"><b> Manager</b></span>&nbsp; &nbsp;
-            <input name="role" onChange={this.onChanged}
-                                    value={role} type="radio" value="User" /> <span className="glyphicon glyphicon-user"><b> User</b></span>&nbsp; &nbsp;
-            <span style={{ color: "red" }}></span>
+                                <label className="glyphicon glyphicon-user" > <b>User Name :</b></label>
+                                <input name="username" onChange={this.onChanged}
+                                    value={username} type="text" placeholder="Enter Full name" className="form-control" required />
+                                <span style={{ color: "red" }}>{this.state.usernameError}</span>
                             </div>
-                                    <div className="form-group">
-                                        <label className="glyphicon glyphicon-user" > <b>User Name :</b></label>
-                                        <input name="username" onChange={this.onChanged}
-                                            value={username} type="text" placeholder="Enter Full name" className="form-control" required />
-                                        <span style={{ color: "red" }}>{this.state.usernameError}</span>
-                                    </div>
 
-                                    <div className="form-group">
-                                        <label className="glyphicon glyphicon-asterisk"><b> Password :</b></label>
-                                        <input name="password" onChange={this.onChanged}
-                                            value={password} type="password" placeholder="Enter password" className="form-control" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required />
-                                        <i className="fa fa-eye password-icon"></i>
-                                        <span style={{ color: "red" }}>{this.state.passwordError}</span>
-                                    </div>
+                            <div className="form-group">
+                                <label className="glyphicon glyphicon-asterisk"><b> Password :</b></label>
+                                <input name="password" onChange={this.onChanged}
+                                    value={password} type="password" placeholder="Enter password" className="form-control" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required />
+                                <i className="fa fa-eye password-icon"></i>
+                                <span style={{ color: "red" }}>{this.state.passwordError}</span>
+                            </div>
 
-                                    <div className="form-group">
-                                        <label className="glyphicon glyphicon-asterisk"><b> Confirm Password :</b></label>
-                                        <input name="confirmpassword" onChange={this.onChanged}
-                                            value={confirmpassword} type="password" placeholder="Enter right password" className="form-control" required />
-                                        <span style={{ color: "red" }}>{this.state.confirmpasswordError}</span>
-                                    </div>
+                            <div className="form-group">
+                                <label className="glyphicon glyphicon-asterisk"><b> Confirm Password :</b></label>
+                                <input name="confirmpassword" onChange={this.onChanged}
+                                    value={confirmpassword} type="password" placeholder="Enter right password" className="form-control" required />
+                                <span style={{ color: "red" }}>{this.state.confirmpasswordError}</span>
+                            </div>
 
-                                    <div className="form-group">
-                                        <label className="glyphicon glyphicon-envelope" htmlFor="email"><b> Email :</b></label>
-                                        <input name="email" onChange={this.onChanged}
-                                            value={email} type="email" placeholder="Enter valid e-mail Id" className="form-control" pattern="^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$" required />
-                                        <span style={{ color: "red" }}>{this.state.emailError}</span>
-                                    </div>
+                            <div className="form-group">
+                                <label className="glyphicon glyphicon-envelope" htmlFor="email"><b> Email :</b></label>
+                                <input name="email" onChange={this.onChanged}
+                                    value={email} type="email" placeholder="Enter valid e-mail Id" className="form-control" pattern="^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$" required />
+                                <span style={{ color: "red" }}>{this.state.emailError}</span>
+                            </div>
 
-                                    <div className="form-group">
-                                        <label> Gender :</label>&nbsp; &nbsp;
+                            <div className="form-group">
+                                <label> Gender :</label>&nbsp; &nbsp;
             <input name="gender" onChange={this.onChanged}
-                                            value={gender} type="radio" value="Male" /> <span className="glyphicon glyphicon-king"><b> Male</b></span> &nbsp; &nbsp;
+                                    value={gender} type="radio" value="Male" /> <span className="glyphicon glyphicon-king"><b> Male</b></span> &nbsp; &nbsp;
             <input name="gender" onChange={this.onChanged}
-                                            value={gender} type="radio" value="Female" /> <span className="glyphicon glyphicon-queen"><b> Female</b></span>&nbsp; &nbsp;
+                                    value={gender} type="radio" value="Female" /> <span className="glyphicon glyphicon-queen"><b> Female</b></span>&nbsp; &nbsp;
             <input name="gender" onChange={this.onChanged}
-                                            value={gender} type="radio" value="Others" /> Others
+                                    value={gender} type="radio" value="Others" /> Others
             <span style={{ color: "red" }}>{this.state.genderError}</span>
-                                    </div>
+                            </div>
 
-                                    <div className="form-group">
-                                        <label className="glyphicon glyphicon-earphone" ><b>Mobile Number :</b></label>
-                                        <input name="mobileno" onChange={this.onChanged}
-                                            value={mobileno} type="Number" placeholder="10 digits mobile number" className="form-control" required />
-                                        <span style={{ color: "red" }}>{this.state.mobilenoError}</span>
-                                    </div>
-                                    <input type="checkbox" required /> By creating an account, I accept the <a>Terms & Conditions</a> <br />
-                                    <button className="btn btn-success" type="submit">Sign Up</button>
+                            <div className="form-group">
+                                <label className="glyphicon glyphicon-earphone" ><b>Mobile Number :</b></label>
+                                <input name="mobileno" onChange={this.onChanged}
+                                    value={mobileno} type="Number" placeholder="10 digits mobile number" className="form-control" required />
+                                <span style={{ color: "red" }}>{this.state.mobilenoError}</span>
+                            </div>
+                            <input type="checkbox" required /> By creating an account, I accept the <a>Terms & Conditions</a> <br />
+                            <button className="btn btn-success" type="submit">Sign Up</button>
                         </form>
 
-                            </div>
-                </div>
                     </div>
+                </div>
+            </div>
 
 
-                    )
-                }
-            }
+        )
+    }
+}
 
-            export default Register;
+export default Register;
 
 

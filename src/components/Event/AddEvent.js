@@ -86,7 +86,7 @@ class AddEvent extends Component {
     render() {
         const { eventname, start, end, startt, endt, image, location, adultprice, childprice, vegprice, nonvegprice, drinksprice, startbook, endbook, description } = this.state;
         return (
-            <div>
+            <div className="container-fluid">
                 <div className="row">
                     <div className="col-sm-2">
                         <button type="button" className="navbar-toggle collapsed"
@@ -125,7 +125,7 @@ class AddEvent extends Component {
                         </ul>
                     </div>
                     <div className="col-sm-3">
-                        <ul className="nav navbar-nav navbar-right">
+                        <ul className="nav navbar-nav">
                             <li><Link to="/logout" className="glyphicon glyphicon-log-out" style={{ color: 'pink' }}> Logout</Link></li>
                             <li />
                         </ul>

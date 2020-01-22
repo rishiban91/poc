@@ -4,15 +4,21 @@ import TableRow from './TableRow';
 import { withRouter } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
-const editClick = (_id) => {
-    alert(_id);
-    this.props.history.push('/editevent/' + _id);
-}
-
 class ListofEvent extends Component {
     constructor(props) {
         super(props);
     }
+
+    editClick = (_id) => {
+        alert(_id);
+        this.props.history.push({
+            pathname: '/editevent/' + _id,
+            state: { title: this.props.location.state.title }
+        });
+
+        // this.props.history.push('/editevent/' + _id);
+    }
+
     showAdmin = () => {
         return (
             <div>
@@ -89,7 +95,7 @@ class ListofEvent extends Component {
                                     endbook={i.endbook}
                                     description={i.description}
                                     deleteEvent={this.props.deleteEvent}
-                                    editClick={editClick} />)}
+                                    editClick={this.editClick.bind(this)} />)}
                         </tbody>
                     </table>
                 </div>
